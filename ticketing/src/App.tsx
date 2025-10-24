@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import TicketListPage from './../src/components/pages/TicketListPage/TicketListPage';
+import CreateTicketPage from './../src/components/pages/CreateTicketPage/CreateTicketPage';
+import { Container, Navbar, Nav } from 'react-bootstrap';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Navbar bg="dark" variant="dark" expand="lg">
+        <Container>
+          <Navbar.Brand href="/">Ticketing MVP</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">Tickets</Nav.Link>
+            <Nav.Link as={Link} to="/create">Create Ticket</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+
+      <Routes>
+        <Route path="/" element={<TicketListPage />} />
+        <Route path="/create" element={<CreateTicketPage />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
